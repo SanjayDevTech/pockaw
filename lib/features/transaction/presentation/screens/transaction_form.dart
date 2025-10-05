@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart'; // Import hooks_riverpod
 import 'package:hugeicons/hugeicons.dart';
 import 'package:pockaw/core/components/buttons/button_state.dart';
 import 'package:pockaw/core/components/buttons/custom_icon_button.dart';
-import 'package:pockaw/core/components/buttons/primary_button.dart';
+import 'package:pockaw/core/components/buttons/primary_button_m3.dart';
 import 'package:pockaw/core/components/scaffolds/custom_scaffold.dart';
 import 'package:pockaw/core/constants/app_colors.dart';
 import 'package:pockaw/core/constants/app_spacing.dart';
@@ -93,7 +93,7 @@ class TransactionForm extends HookConsumerWidget {
                   : _buildActualForm(context, ref, formState),
             ),
           ),
-          PrimaryButton(
+          PrimaryButtonM3(
             label: 'Save',
             state: ButtonState.active,
             // Now formState is available in this scope

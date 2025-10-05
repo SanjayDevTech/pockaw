@@ -5,7 +5,7 @@ import 'package:hugeicons/hugeicons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pockaw/core/components/bottom_sheets/custom_bottom_sheet.dart';
 import 'package:pockaw/core/components/buttons/button_state.dart';
-import 'package:pockaw/core/components/buttons/primary_button.dart';
+import 'package:pockaw/core/components/buttons/primary_button_m3.dart';
 import 'package:pockaw/core/components/form_fields/custom_text_field.dart';
 import 'package:pockaw/core/constants/app_colors.dart';
 import 'package:pockaw/core/constants/app_spacing.dart';
@@ -82,10 +82,10 @@ class GoalFormDialog extends HookConsumerWidget {
               isRequired: true,
               appendCurrencySymbolToHint: true,
             ), */
-            PrimaryButton(
+            PrimaryButtonM3(
               label: 'Save',
               state: ButtonState.active,
-              themeMode: context.themeMode,
+
               onPressed: () {
                 final selectedDate = ref.watch(datePickerProvider);
                 Log.d(titleController.text, label: 'title');

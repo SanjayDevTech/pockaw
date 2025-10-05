@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:pockaw/core/components/bottom_sheets/custom_bottom_sheet.dart';
 import 'package:pockaw/core/components/buttons/custom_icon_button.dart';
-import 'package:pockaw/core/components/buttons/primary_button.dart';
+import 'package:pockaw/core/components/buttons/primary_button_m3.dart';
 import 'package:pockaw/core/components/form_fields/custom_text_field.dart';
 import 'package:pockaw/core/components/scaffolds/custom_scaffold.dart';
 import 'package:pockaw/core/constants/app_colors.dart';
@@ -106,7 +106,7 @@ class LoginScreen extends HookConsumerWidget {
                 vertical: AppSpacing.spacing20,
                 horizontal: AppSpacing.spacing20,
               ),
-              child: PrimaryButton(
+              child: PrimaryButtonM3(
                 label: 'Start Journey',
                 onPressed: () {
                   KeyboardService.closeKeyboard();

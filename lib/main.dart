@@ -8,7 +8,15 @@ import 'package:pockaw/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+      name: 'pockaw', // Give it a unique name to avoid conflicts
+    );
+  } catch (e) {
+    // If Firebase is already initialized, get the existing instance
+    Firebase.app('pockaw');
+  }
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   runApp(ProviderScope(child: const MyApp()));
 }

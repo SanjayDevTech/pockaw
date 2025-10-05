@@ -10,59 +10,177 @@ import 'package:pockaw/core/constants/app_font_families.dart';
 import 'package:pockaw/core/constants/app_spacing.dart';
 import 'package:pockaw/core/constants/app_text_styles.dart';
 
-class PrimaryButton extends FilledButton {
-  PrimaryButton({
-    required String label,
-    bool isLoading = false,
-    bool isOutlined = false,
-    String loadingText = 'Please wait...',
-    IconData? icon,
-    EdgeInsets? padding,
-    ButtonType type = ButtonType.primary,
-    ButtonState state = ButtonState.active,
-    ThemeMode themeMode = ThemeMode.system,
-    VoidCallback? onPressed,
-    super.key,
-  }) : super(
-         onPressed: isLoading ? null : onPressed,
-         style:
-             _styleFromTypeAndState(
-               type: type,
-               state: state,
-               themeMode: themeMode,
-               isLoading: isLoading,
-             ).copyWith(
-               textStyle: WidgetStatePropertyAll<TextStyle>(
-                 AppTextStyles.body1.copyWith(
-                   fontFamily: AppFontFamilies.montserrat,
-                 ),
-               ),
-               padding: padding == null
-                   ? null
-                   : WidgetStatePropertyAll<EdgeInsetsGeometry>(padding),
-             ),
-         child: Row(
-           mainAxisAlignment: MainAxisAlignment.center,
-           children: [
-             if (isLoading)
-               const SizedBox.square(
-                 dimension: 16,
-                 child: LoadingIndicator(color: Colors.grey),
-               ),
-             if (isLoading) const Gap(AppSpacing.spacing12),
-             if (icon != null) Icon(icon),
-             if (icon != null) const Gap(AppSpacing.spacing8),
-             Text(isLoading ? loadingText : label),
-           ],
-         ),
-       );
+/// Primary button component using Material 3 Expressive styles
+class PrimaryButton extends StatelessWidget {
+  final String label;
+  final bool isLoading;
+  final bool isOutlined;
+  final String loadingText;
+  final IconData? icon;
+  final EdgeInsets? padding;
+  final ButtonType type;
+  final ButtonState state;
+  final ThemeMode themeMode;
+  final VoidCallback? onPressed;
 
-  static ButtonStyle _styleFromTypeAndState({
-    ButtonType type = ButtonType.primary,
-    ButtonState state = ButtonState.active,
-    ThemeMode themeMode = ThemeMode.system,
-    bool isLoading = false,
-  }) {
+  /// Creates a Material 3 Expressive primary button
+  const PrimaryButton({
+    required this.label,
+    this.isLoading = false,
+    this.isOutlined = false,
+    this.loadingText = 'Please wait...',
+    this.icon,
+    this.padding,
+    this.type = ButtonType.primary,
+    this.state = ButtonState.active,
+    this.themeMode = ThemeMode.system,
+    this.onPressed,
+    super.key,
+  });
+  
+  @override
+  Widget build(BuildContext context) {
+    final effectiveOnPressed = isLoading ? null : onPressed;
+    
+    // Choose the right button style based on type
+    if (isOutlined) {
+      return _buildOutlinedButton(context, effectiveOnPressed);
+    } else {
+      return _buildFilledButton(context, effectiveOnPressed);
+    }
+  }
+  
+  Widget _buildFilledButton(BuildContext context, VoidCallback? onPressed) {
+    return FilledButton(
+      onPressed: onPressed,
+      style: _getButtonStyle(context),
+      child: _buildButtonContent(context),
+    );
+  }
+  
+  Widget _buildOutlinedButton(BuildContext context, VoidCallback? onPressed) {
+    return OutlinedButton(
+      onPressed: onPressed,
+      style: _getButtonStyle(context),
+      child: _buildButtonContent(context),
+    );
+  }
+  
+  ButtonStyle _getButtonStyle(BuildContext context) {
+    // Use the theme-provided button styles when possible
+    switch (type) {
+      case ButtonType.primary:
+        return isOutlined 
+            ? Theme.of(context).outlinedButtonTheme.style!
+            : Theme.of(context).elevatedButtonTheme.style!;
+      case ButtonType.secondary:
+        return isOutlined
+            ? Theme.of(context).outlinedButtonTheme.style!.copyWith(
+                foregroundColor: MaterialStatePropertyAll(
+                  context.colors.secondary,
+                ),
+              )
+            : Theme.of(context).elevatedButtonTheme.style!.copyWith(
+                backgroundColor: MaterialStatePropertyAll(
+                  context.colors.secondary,
+                ),
+              );
+      case ButtonType.tertiary:
+        return Theme.of(context).textButtonTheme.style!;
+      case ButtonType.danger:
+        return isOutlined
+            ? Theme.of(context).outlinedButtonTheme.style!.copyWith(
+                foregroundColor: MaterialStatePropertyAll(
+                  context.colors.error,
+                ),
+                side: MaterialStatePropertyAll(
+                  BorderSide(color: context.colors.error),
+                ),
+              )
+            : Theme.of(context).elevatedButtonTheme.style!.copyWith(
+                backgroundColor: MaterialStatePropertyAll(
+                  context.colors.error,
+                ),
+              );
+      default:
+        return isOutlined
+            ? Theme.of(context).outlinedButtonTheme.style!
+            : Theme.of(context).elevatedButtonTheme.style!;
+    }
+  }
+  
+  Widget _buildButtonContent(BuildContext context) {
+    if (isLoading) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          LoadingIndicator(
+            size: 20,
+            color: _getLoadingColor(context),
+          ),
+          const Gap(AppSpacing.spacing8),
+          Text(
+            loadingText,
+            style: AppTextStyles.body3.copyWith(
+              color: _getTextColor(context),
+            ),
+          ),
+        ],
+      );
+    }
+    
+    if (icon != null) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 20),
+          const Gap(AppSpacing.spacing8),
+          Text(label),
+        ],
+      );
+    }
+    
+    return Text(label);
+  }
+  
+  Color _getLoadingColor(BuildContext context) {
+    if (isOutlined) {
+      switch (type) {
+        case ButtonType.primary:
+          return context.colors.primary;
+        case ButtonType.secondary:
+          return context.colors.secondary;
+        case ButtonType.tertiary:
+          return context.colors.tertiary;
+        case ButtonType.danger:
+          return context.colors.error;
+        default:
+          return context.colors.primary;
+      }
+    } else {
+      return Colors.white;
+    }
+  }
+  
+  Color _getTextColor(BuildContext context) {
+    if (isOutlined) {
+      switch (type) {
+        case ButtonType.primary:
+          return context.colors.primary;
+        case ButtonType.secondary:
+          return context.colors.secondary;
+        case ButtonType.tertiary:
+          return context.colors.tertiary;
+        case ButtonType.danger:
+          return context.colors.error;
+        default:
+          return context.colors.primary;
+      }
+    } else {
+      return Colors.white;
+    }
+  }
     switch (type) {
       case ButtonType.primary:
         switch (state) {

@@ -23,8 +23,17 @@ class CurrencyPickerField extends HookConsumerWidget {
     final currencyController = useTextEditingController();
 
     useEffect(() {
+      // Initialize with the default currency (if provided) or the current selected currency
       if (defaultCurrency != null) {
         currencyController.text = defaultCurrency!.symbolWithCountry;
+        // Set the provider state to match the default currency
+        if (defaultCurrency!.isoCode != currency.isoCode) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ref.read(currencyProvider.notifier).state = defaultCurrency!;
+          });
+        }
+      } else {
+        currencyController.text = currency.symbolWithCountry;
       }
       return null;
     }, [defaultCurrency]);

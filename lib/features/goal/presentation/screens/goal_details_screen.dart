@@ -9,7 +9,7 @@ import 'package:pockaw/core/components/bottom_sheets/alert_bottom_sheet.dart';
 
 import 'package:pockaw/core/components/buttons/button_state.dart';
 import 'package:pockaw/core/components/buttons/custom_icon_button.dart';
-import 'package:pockaw/core/components/buttons/primary_button.dart';
+import 'package:pockaw/core/components/buttons/primary_button_m3.dart';
 import 'package:pockaw/core/components/dialogs/toast.dart';
 import 'package:pockaw/core/components/loading_indicators/loading_indicator.dart';
 import 'package:pockaw/core/components/scaffolds/custom_scaffold.dart';
@@ -139,10 +139,9 @@ class GoalDetailsScreen extends ConsumerWidget {
               },
             ),
           ),
-          PrimaryButton(
+          PrimaryButtonM3(
             label: 'Add Checklist Item',
             state: ButtonState.outlinedActive,
-            themeMode: context.themeMode,
             onPressed: () {
               print('➕  Opening checklist dialog for goalId=$goalId');
               context.openBottomSheet(

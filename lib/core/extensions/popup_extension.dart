@@ -11,6 +11,7 @@ extension PopupExtension on BuildContext {
       context: this,
       showDragHandle: true,
       isScrollControlled: isScrollControlled,
+      useSafeArea: true,  // Ensure content respects safe areas
       builder: builder ?? (context) => child,
     );
   }
@@ -25,6 +26,7 @@ extension PopupExtension on BuildContext {
       barrierColor: Colors.transparent,
       backgroundColor: backgroundColor,
       showDragHandle: true,
+      useSafeArea: true,  // Ensure content respects safe areas
       builder: (context) => SizedBox(
         height: height ?? MediaQuery.of(context).size.height * 0.4,
         child: child,
@@ -37,6 +39,7 @@ extension PopupExtension on BuildContext {
       context: this,
       barrierColor: Colors.transparent,
       backgroundColor: Colors.grey.shade100,
+      useSafeArea: true,  // Ensure content respects safe areas
       builder: (context) => SizedBox(
         height: MediaQuery.of(context).size.height * 0.4,
         child: CustomKeyboard(controller: controller),

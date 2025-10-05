@@ -21,7 +21,7 @@ class CustomScaffold extends Scaffold {
   CustomScaffold({
     super.key,
     required BuildContext context,
-    required Widget super.body,
+    required Widget body,
     String title = '',
     bool showBackButton = true,
     bool showBalance = true,
@@ -30,14 +30,20 @@ class CustomScaffold extends Scaffold {
   }) : super(
          resizeToAvoidBottomInset: true,
          backgroundColor: Theme.of(context).colorScheme.surface,
+         // Wrap body with SafeArea to respect system insets
+         body: SafeArea(
+           bottom: false, // Don't apply bottom padding since we handle it separately
+           child: body,
+         ),
          appBar: AppBar(
-           backgroundColor: context.colors.surface,
+           backgroundColor: Theme.of(context).colorScheme.surface,
            titleSpacing: showBackButton ? 0 : AppSpacing.spacing20,
-           toolbarHeight: 60,
+           toolbarHeight: 64, // Match M3 Expressive height
            leadingWidth: 65,
            elevation: 0,
            automaticallyImplyLeading: false,
-           scrolledUnderElevation: 0,
+           scrolledUnderElevation: 2.0, // Add subtle elevation for M3 Expressive when scrolled
+           shadowColor: Theme.of(context).colorScheme.shadow,
            leading: !showBackButton
                ? null
                : Padding(

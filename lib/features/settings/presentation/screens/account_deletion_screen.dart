@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pockaw/core/components/bottom_sheets/alert_bottom_sheet.dart';
-import 'package:pockaw/core/components/buttons/primary_button.dart';
+import 'package:pockaw/core/components/buttons/primary_button_m3.dart';
 import 'package:pockaw/core/components/form_fields/custom_text_field.dart';
 import 'package:pockaw/core/components/loading_indicators/loading_indicator.dart';
 import 'package:pockaw/core/components/scaffolds/custom_scaffold.dart';
@@ -138,7 +138,7 @@ class AccountDeletionScreen extends HookConsumerWidget {
                   },
                 ),
                 const Spacer(),
-                PrimaryButton(
+                PrimaryButtonM3(
                   label: 'Delete My Account and Erase Data',
                   onPressed: isChallengeMet.value
                       ? () => _showConfirmationSheet(context, ref)

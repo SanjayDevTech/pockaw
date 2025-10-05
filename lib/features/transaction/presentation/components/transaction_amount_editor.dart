@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:pockaw/core/components/buttons/primary_button.dart';
+import 'package:pockaw/core/components/buttons/primary_button_m3.dart';
 import 'package:pockaw/core/constants/app_colors.dart';
 import 'package:pockaw/core/constants/app_radius.dart';
 import 'package:pockaw/core/constants/app_spacing.dart';
@@ -83,7 +83,7 @@ class TransactionAmountEditor extends StatelessWidget {
             ),
           ),
           const Gap(AppSpacing.spacing16),
-          PrimaryButton(
+          PrimaryButtonM3(
             label: 'Save',
             onPressed: () {},
           ),

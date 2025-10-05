@@ -6,7 +6,7 @@ import 'package:hugeicons/hugeicons.dart';
 import 'package:pockaw/core/components/bottom_sheets/alert_bottom_sheet.dart';
 import 'package:pockaw/core/components/bottom_sheets/custom_bottom_sheet.dart';
 import 'package:pockaw/core/components/buttons/button_state.dart';
-import 'package:pockaw/core/components/buttons/primary_button.dart';
+import 'package:pockaw/core/components/buttons/primary_button_m3.dart';
 import 'package:pockaw/core/components/form_fields/custom_numeric_field.dart';
 import 'package:pockaw/core/components/form_fields/custom_text_field.dart';
 import 'package:pockaw/core/constants/app_colors.dart';
@@ -35,9 +35,12 @@ class WalletFormBottomSheet extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currency = ref.read(currencyProvider);
+    // Get the default currency or use the wallet's currency if editing
     final isEditing = wallet != null;
-
+    
+    // Initialize with current selection but we'll update if editing
+    final currency = ref.watch(currencyProvider);
+    
     final nameController = useTextEditingController();
     final balanceController = useTextEditingController();
     final currencyController = useTextEditingController();
@@ -48,10 +51,17 @@ class WalletFormBottomSheet extends HookConsumerWidget {
     // Initialize form fields if in edit mode (already handled by controller initial text)
     useEffect(() {
       if (isEditing && wallet != null) {
+        // Set the wallet's currency in the provider state when editing
+        final walletCurrency = wallet!.currencyByIsoCode(ref);
+        // Update the currency provider to use the wallet's currency
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ref.read(currencyProvider.notifier).state = walletCurrency;
+        });
+        
         nameController.text = wallet!.name;
         balanceController.text = wallet!.balance == 0
             ? ''
-            : '${wallet?.currencyByIsoCode(ref).symbol} ${wallet?.balance.toPriceFormat()}';
+            : '${walletCurrency.symbol} ${wallet?.balance.toPriceFormat()}';
         currencyController.text = wallet!.currency;
       }
       return null;
@@ -85,15 +95,18 @@ class WalletFormBottomSheet extends HookConsumerWidget {
               useSelectedCurrency: true,
               // autofocus: !isEditing, // Optional: autofocus if adding new
             ),
-            PrimaryButton(
+            PrimaryButtonM3(
               label: 'Save Wallet',
               state: ButtonState.active,
               onPressed: () async {
+                // Get the current selected currency from the provider
+                final selectedCurrency = ref.read(currencyProvider);
+                
                 final newWallet = WalletModel(
                   id: wallet?.id, // Keep ID for updates, null for inserts
                   name: nameController.text.trim(),
                   balance: balanceController.text.takeNumericAsDouble(),
-                  currency: currency.isoCode,
+                  currency: selectedCurrency.isoCode, // Use the currently selected currency
                   iconName: wallet?.iconName, // Preserve or add UI to change
                   colorHex: wallet?.colorHex, // Preserve or add UI to change
                 );

@@ -5,7 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:pockaw/core/components/buttons/primary_button.dart';
+import 'package:pockaw/core/components/buttons/primary_button_m3.dart';
 import 'package:pockaw/core/components/dialogs/toast.dart';
 import 'package:pockaw/core/components/form_fields/custom_text_field.dart';
 import 'package:pockaw/core/components/scaffolds/custom_scaffold.dart';
@@ -112,7 +112,7 @@ class PersonalDetailsScreen extends HookConsumerWidget {
               ),
             ),
           ),
-          PrimaryButton(
+          PrimaryButtonM3(
             label: 'Save',
             onPressed: () {
               final newName = nameField.text.trim();

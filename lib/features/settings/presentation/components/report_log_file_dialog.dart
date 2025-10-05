@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pockaw/core/components/bottom_sheets/custom_bottom_sheet.dart';
-import 'package:pockaw/core/components/buttons/primary_button.dart';
+import 'package:pockaw/core/components/buttons/primary_button_m3.dart';
 import 'package:pockaw/core/constants/app_spacing.dart';
 import 'package:pockaw/core/utils/share_service.dart';
 
@@ -23,7 +23,7 @@ class ReportLogFileDialog extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           Gap(AppSpacing.spacing32),
-          PrimaryButton(
+          PrimaryButtonM3(
             label: 'Understand and Continue',
             onPressed: () async {
               await ShareService.shareLogFile();

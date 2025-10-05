@@ -26,7 +26,7 @@ class CategorySaveButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    return PrimaryButton(
+    return PrimaryButtonM3(
       label: 'Save',
       state: ButtonState.active,
       onPressed: () async {

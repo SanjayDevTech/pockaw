@@ -25,15 +25,16 @@ class TransactionSummaryCard extends ConsumerWidget {
         ?.currencyByIsoCode(ref)
         .symbol;
 
-    return Container(
-      width: double.infinity,
+    // Using Material 3 Card for consistent Expressive design
+    return Card(
       margin: const EdgeInsets.symmetric(horizontal: AppSpacing.spacing20),
-      padding: const EdgeInsets.all(AppSpacing.spacing16),
-      decoration: BoxDecoration(
-        color: context.purpleBackground,
-        border: Border.all(color: context.purpleBorderLighter),
-        borderRadius: BorderRadius.circular(AppRadius.radius8),
+      elevation: 2.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16.0), // M3 Expressive rounded corners
       ),
+      color: context.purpleBackground,
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.spacing16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -101,6 +102,7 @@ class TransactionSummaryCard extends ConsumerWidget {
           ),
         ],
       ),
-    );
+    ),
+  );
   }
 }

@@ -6,12 +6,17 @@ class GetStartedButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     return Positioned(
-      bottom: 0,
+      bottom: MediaQuery.of(context).padding.bottom,
       left: 0,
       right: 0,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        child: PrimaryButton(
+        padding: EdgeInsets.symmetric(
+          vertical: 20,
+          horizontal: 20,
+        ).copyWith(
+          bottom: 20 + MediaQuery.of(context).padding.bottom,
+        ),
+        child: PrimaryButtonM3(
           label: 'Get Started',
           onPressed: () {
             if (context.mounted) context.push(Routes.getStarted); // route '/'

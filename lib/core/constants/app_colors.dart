@@ -110,15 +110,19 @@ class AppColors {
 
   // Neutral Colors
   static const Color light = neutral50;
-  static const Color dark = Color(0xFF18011D);
+  static const Color dark = Color(0xFF000000); // Pure black for OLED screens
 
   // Specific Dark Grey for Alpha Variants
   static const Color darkGrey = Color(
-    0xFF21272B,
-  ); // Base for dark alpha variants
+    0xFF121212,
+  ); // Adjusted for better contrast with pure black
   static const Color darkGreyBorder = Color(
-    0xFF2A3034,
-  ); // Base for dark alpha variants
+    0xFF1F1F1F,
+  );
+
+  static const Color navigationBarBackground = Color(
+    0xFF0A0A0A,
+  ); // Subtle contrast for bottom navigation bar in OLED mode
   static Color get darkAlpha10 => darkGrey.withAlpha(10);
   static Color get darkAlpha30 => darkGrey.withAlpha(30);
   static Color get darkAlpha50 => darkGrey.withAlpha(60);
@@ -232,6 +236,9 @@ extension ColorExtensions on BuildContext {
 
   Color get floatingContainer =>
       themeMode == ThemeMode.dark ? AppColors.dark : AppColors.light;
+      
+  Color get navigationBar =>
+      themeMode == ThemeMode.dark ? AppColors.navigationBarBackground : AppColors.light;
 
   Color get disabledText =>
       themeMode == ThemeMode.dark ? AppColors.neutral700 : AppColors.neutral400;

@@ -3,6 +3,7 @@
 <img src="https://pockaw.com/assets/images/pockaw-cover-github_readme.webp" alt="Pockaw Cover">
 
 ![Flutter](https://img.shields.io/badge/Flutter-blue?logo=flutter)
+![Material 3](https://img.shields.io/badge/Material_3_Expressive-blue?logo=material-design)
 ![Platform](https://img.shields.io/badge/Android%20(Beta)-purple)
 ![Platform](https://img.shields.io/badge/Web%20(soon)-purple)
 ![Platform](https://img.shields.io/badge/iOS%20(soon)-purple)
@@ -16,6 +17,21 @@
 ![PR Closed](https://img.shields.io/github/issues-pr-closed/layground/pockaw?style=social&color=9929EA)
 
 [![Join our Discord](https://img.shields.io/badge/Join_Discord_Community-7289DA?logo=discord&logoColor=white)](https://discord.gg/xt5wDe4w)
+
+## Material 3 Expressive Theme
+
+Pockaw uses the Material 3 Expressive design system for a modern, engaging user experience. The Expressive variant of Material 3 features:
+
+- Enhanced depth effects and shadows for visual hierarchy
+- More distinctive typography with increased contrast between text roles
+- Customized motion and animation for a dynamic feel
+- Pure black dark mode optimized for OLED screens
+- Rounded corners and consistent design language
+
+Our implementation includes custom extensions to support Material 3 Expressive features:
+- `ExpressiveExtension`: Controls depth, shadows, motion, and shape density
+- `M3Colors`: Standard Material 3 color system with proper token mapping
+- `M3Typography`: Expressive typography system with enhanced visual hierarchy
 
 <a href="https://github.com/Codelessly/ResponsiveFramework">
   <img alt="Built with Responsive Framework"

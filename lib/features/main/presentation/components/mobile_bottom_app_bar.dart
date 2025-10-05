@@ -15,17 +15,24 @@ class MobileBottomAppBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Using Material 3 Expressive style for navigation bar
     return Container(
-      padding: const EdgeInsets.symmetric(
+      padding: EdgeInsets.symmetric(
         vertical: AppSpacing.spacing12,
         horizontal: AppSpacing.spacing16,
       ),
       decoration: BoxDecoration(
-        color: context.themeMode == ThemeMode.light
-            ? AppColors.dark
-            : AppColors.darkGrey,
+        color: context.navigationBar,
         borderRadius: BorderRadius.circular(AppRadius.radiusFull),
-        border: Border.all(color: AppColors.darkGreyBorder),
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
+        // Add subtle shadow for elevated look in expressive design
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(0, -2),
+          ),
+        ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

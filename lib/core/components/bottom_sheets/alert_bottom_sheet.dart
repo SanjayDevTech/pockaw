@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pockaw/core/components/bottom_sheets/custom_bottom_sheet.dart';
 import 'package:pockaw/core/components/buttons/button_state.dart';
-import 'package:pockaw/core/components/buttons/primary_button.dart';
+import 'package:pockaw/core/components/buttons/primary_button_m3.dart';
 import 'package:pockaw/core/constants/app_spacing.dart';
 
 class AlertBottomSheet extends CustomBottomSheet {
@@ -32,7 +32,7 @@ class AlertBottomSheet extends CustomBottomSheet {
                spacing: AppSpacing.spacing12,
                children: [
                  Expanded(
-                   child: PrimaryButton(
+                   child: PrimaryButtonM3(
                      label: cancelText ?? 'Cancel',
                      isOutlined: true,
                      state: ButtonState.outlinedActive,
@@ -43,7 +43,7 @@ class AlertBottomSheet extends CustomBottomSheet {
                    ),
                  ),
                  Expanded(
-                   child: PrimaryButton(
+                   child: PrimaryButtonM3(
                      label: confirmText ?? 'Yes',
                      onPressed: onConfirm,
                    ),

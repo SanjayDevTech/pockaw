@@ -52,7 +52,7 @@ class MainScreen extends ConsumerWidget {
                 children: [
                   pageViewWidget,
                   Positioned(
-                    bottom: AppSpacing.spacing8,
+                    bottom: MediaQuery.of(context).padding.bottom + AppSpacing.spacing8,
                     left: AppSpacing.spacing8,
                     right: AppSpacing.spacing8,
                     child: navigationControls,

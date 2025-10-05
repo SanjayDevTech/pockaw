@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:pockaw/core/components/bottom_sheets/alert_bottom_sheet.dart';
 import 'package:pockaw/core/components/buttons/custom_icon_button.dart';
-import 'package:pockaw/core/components/buttons/primary_button.dart';
+import 'package:pockaw/core/components/buttons/primary_button_m3.dart';
 import 'package:pockaw/core/components/dialogs/toast.dart';
 import 'package:pockaw/core/components/form_fields/custom_confirm_checkbox.dart';
 import 'package:pockaw/core/components/form_fields/custom_numeric_field.dart';
@@ -288,7 +288,7 @@ class BudgetFormScreen extends HookConsumerWidget {
                 ),
               ),
             ),
-          PrimaryButton(
+          PrimaryButtonM3(
             label: 'Save Budget',
             onPressed: saveBudget,
           ).floatingBottomContained,

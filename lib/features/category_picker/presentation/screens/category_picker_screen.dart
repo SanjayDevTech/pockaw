@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pockaw/core/components/buttons/button_state.dart';
-import 'package:pockaw/core/components/buttons/primary_button.dart';
+import 'package:pockaw/core/components/buttons/primary_button_m3.dart';
 import 'package:pockaw/core/components/scaffolds/custom_scaffold.dart';
 import 'package:pockaw/core/constants/app_spacing.dart';
 import 'package:pockaw/core/extensions/popup_extension.dart';
@@ -81,7 +81,7 @@ class CategoryPickerScreen extends ConsumerWidget {
                 ),
           ),
           if (!isPickingParent)
-            PrimaryButton(
+            PrimaryButtonM3(
               label: 'Add New Category',
               state: ButtonState.outlinedActive,
               onPressed: () {
