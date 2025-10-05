@@ -13,7 +13,12 @@ class RecentTransactionList extends ConsumerWidget {
       data: (allTransactions) {
         if (allTransactions.isEmpty) {
           return Container(
-            padding: const EdgeInsets.all(AppSpacing.spacing20),
+            padding: EdgeInsets.fromLTRB(
+              AppSpacing.spacing20 + MediaQuery.of(context).padding.left,
+              AppSpacing.spacing20,
+              AppSpacing.spacing20 + MediaQuery.of(context).padding.right,
+              AppSpacing.spacing20,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -45,8 +50,17 @@ class RecentTransactionList extends ConsumerWidget {
             .take(5)
             .toList();
 
+        // Get horizontal safe area insets
+        final leftSafeArea = MediaQuery.of(context).padding.left;
+        final rightSafeArea = MediaQuery.of(context).padding.right;
+        
         return Container(
-          padding: const EdgeInsets.all(AppSpacing.spacing20),
+          padding: EdgeInsets.fromLTRB(
+            AppSpacing.spacing20 + leftSafeArea,
+            AppSpacing.spacing20,
+            AppSpacing.spacing20 + rightSafeArea,
+            AppSpacing.spacing20,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

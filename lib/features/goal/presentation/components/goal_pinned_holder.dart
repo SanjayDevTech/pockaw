@@ -21,8 +21,11 @@ class GoalPinnedHolder extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.spacing20,
+            padding: EdgeInsets.fromLTRB(
+              AppSpacing.spacing20 + MediaQuery.of(context).padding.left,
+              0,
+              AppSpacing.spacing20 + MediaQuery.of(context).padding.right,
+              0,
             ),
             child: const Text('Pinned Goals', style: AppTextStyles.heading6),
           ),
@@ -35,11 +38,18 @@ class GoalPinnedHolder extends ConsumerWidget {
                 );
               }
 
+              // Get horizontal safe area insets
+              final leftSafeArea = MediaQuery.of(context).padding.left;
+              final rightSafeArea = MediaQuery.of(context).padding.right;
+              
               return SizedBox(
                 height: 150,
                 child: ListView.separated(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.spacing20,
+                  padding: EdgeInsets.fromLTRB(
+                    AppSpacing.spacing20 + leftSafeArea,
+                    0,
+                    AppSpacing.spacing20 + rightSafeArea,
+                    0
                   ),
                   itemCount: data.take(5).length,
                   scrollDirection: Axis.horizontal,
@@ -50,7 +60,7 @@ class GoalPinnedHolder extends ConsumerWidget {
                     );
                   },
                   separatorBuilder: (context, index) =>
-                      Gap(AppSpacing.spacing12),
+                      const Gap(AppSpacing.spacing12),
                 ),
               );
             },

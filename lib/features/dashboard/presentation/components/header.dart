@@ -5,8 +5,17 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the top safe area inset
+    final topSafeArea = MediaQuery.of(context).padding.top;
+    
     return Container(
-      padding: const EdgeInsets.all(AppSpacing.spacing20),
+      // Add padding that accounts for the safe area at the top
+      padding: EdgeInsets.fromLTRB(
+        AppSpacing.spacing20,
+        topSafeArea + AppSpacing.spacing20,
+        AppSpacing.spacing20,
+        AppSpacing.spacing20,
+      ),
       child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Extension for Material 3 Expressive design
+/// Enhanced for Android 16 QPR1 compatibility
 class ExpressiveExtension extends ThemeExtension<ExpressiveExtension> {
   /// Whether to use the expressive design system
   final bool expressive;
@@ -22,15 +23,19 @@ class ExpressiveExtension extends ThemeExtension<ExpressiveExtension> {
 
   /// Type scale adjustments
   final double? typeScaleFactor;
+  
+  /// Animation duration multiplier (1.0 = standard)
+  final double? animationSpeed;
 
   const ExpressiveExtension({
     this.expressive = true,
     this.surfaceTintColor,
-    this.depthFactor = 0.8, // Higher depth effect for expressive
+    this.depthFactor = 0.85, // Higher depth effect for expressive on Android 16
     this.motionStyle = MotionStyle.emphasized,
-    this.shapeDensity = 0.5,
-    this.shadowStrength = 0.7, // Stronger shadows for expressive
+    this.shapeDensity = 0.6, // Enhanced shape density for Android 16
+    this.shadowStrength = 0.8, // Stronger shadows for expressive on modern displays
     this.typeScaleFactor = 1.05, // Slightly larger text for expressive
+    this.animationSpeed = 1.0, // Standard animation speed
   });
 
   @override
@@ -42,6 +47,7 @@ class ExpressiveExtension extends ThemeExtension<ExpressiveExtension> {
     double? shapeDensity,
     double? shadowStrength,
     double? typeScaleFactor,
+    double? animationSpeed,
   }) {
     return ExpressiveExtension(
       expressive: expressive ?? this.expressive,
@@ -51,6 +57,7 @@ class ExpressiveExtension extends ThemeExtension<ExpressiveExtension> {
       shapeDensity: shapeDensity ?? this.shapeDensity,
       shadowStrength: shadowStrength ?? this.shadowStrength,
       typeScaleFactor: typeScaleFactor ?? this.typeScaleFactor,
+      animationSpeed: animationSpeed ?? this.animationSpeed,
     );
   }
 
@@ -71,6 +78,7 @@ class ExpressiveExtension extends ThemeExtension<ExpressiveExtension> {
       shapeDensity: lerpDouble(shapeDensity, other.shapeDensity, t),
       shadowStrength: lerpDouble(shadowStrength, other.shadowStrength, t),
       typeScaleFactor: lerpDouble(typeScaleFactor, other.typeScaleFactor, t),
+      animationSpeed: lerpDouble(animationSpeed, other.animationSpeed, t),
     );
   }
   

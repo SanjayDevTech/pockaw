@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math' as math;
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -48,22 +49,30 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the bottom safe area inset
+    final bottomSafeArea = MediaQuery.of(context).padding.bottom;
+    
     return Scaffold(
       backgroundColor: context.colors.surface,
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(85),
         child: Header(),
       ),
-      body: ListView(
-        padding: EdgeInsets.only(bottom: 100),
-        children: [
-          Container(
-            margin: const EdgeInsets.fromLTRB(
-              AppSpacing.spacing20,
-              0,
-              AppSpacing.spacing20,
-              AppSpacing.spacing20,
-            ),
+      body: SafeArea(
+        // Don't apply top padding as it's handled by the appBar
+        top: false,
+        // Apply safe area to all other sides
+        child: ListView(
+          // Add bottom padding that accounts for both the safe area and the bottom nav bar
+          padding: EdgeInsets.only(bottom: 100 + bottomSafeArea),
+          children: [
+            Container(
+              margin: EdgeInsets.fromLTRB(
+                AppSpacing.spacing20 + MediaQuery.of(context).padding.left,
+                0,
+                AppSpacing.spacing20 + MediaQuery.of(context).padding.right,
+                AppSpacing.spacing20,
+              ),
             child: const Column(
               children: [
                 BalanceCard(),
@@ -78,6 +87,6 @@ class DashboardScreen extends StatelessWidget {
           const RecentTransactionList(),
         ],
       ),
-    );
+    ));
   }
 }
